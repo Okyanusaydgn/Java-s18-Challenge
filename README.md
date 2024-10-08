@@ -1,3 +1,4 @@
+![image](https://github.com/user-attachments/assets/8a765942-007e-4661-b0da-0003f110a083)
 # 📚 Kitap Yazar Projesi
 
 Merhaba! Bu proje, Java Spring Boot ve PostgreSQL kullanarak geliştirdiğimiz bir **Kitap Yazar Yönetim Sistemi**. Burada yazar bilgilerini ekleyebilir, silebilir, güncelleyebilir ve listeleyebilirsin. Backend projesi tamamen Java ile yazıldı ve veritabanı olarak PostgreSQL kullandık.
