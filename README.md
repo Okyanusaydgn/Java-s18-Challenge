@@ -1,59 +1,90 @@
-#  Java Spring REST API
+📚 Kitap Yazar Projesi
+Merhaba! 👋 Bu proje, yazarlar, kitaplar ve kategoriler arasında bir yönetim sistemi sunan basit bir Spring Boot uygulaması. PostgreSQL ile veritabanı işlemlerini hallediyoruz ve Hibernate ile ORM kullanıyoruz. Hadi birlikte bakalım nasıl çalışıyor! 🚀
 
-### Proje Kurulumu
+Kurulum 🛠️
+Gereksinimler:
+Java 17 ☕
+Spring Boot 3.x 🌱
+PostgreSQL 15 🐘
+Postman (API’leri test etmek için) 📬
+Veritabanı Ayarları:
+Projemiz, PostgreSQL’e bağlı ve ilgili ayarlar application.properties dosyasında. İşte önemli ayarlar:
 
-Projeyi öncelikle forklayın ve clone edin.
-Daha sonra projeyi IntellijIDEA kullanarak açınız. README.md dosyasını dikkatli bir şekilde okuyarak istenenleri yapmaya çalışın.
-Proje sayımız ilerledikçe proje yönetimimizi kolaylaştırmak adına projelerimizi belli klasör kalıplarında saklamak işimizi kolaylaştırmak adına iyi bir alışkanlıktır.
-Örnek bir Lokasyon: Workintech/Sprint_1/Etud.
+properties
+Kodu kopyala
+spring.application.name=Book-Author-Project
+server.servlet.context-path=/workintech
+server.port=8080
+spring.datasource.url=jdbc:postgresql://localhost:5432/projects
+spring.datasource.username=postgres
+spring.datasource.password=137731
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.properties.hibernate.default_schema=fsweb
+spring.jpa.database-platform=org.hibernate.dialect.PostgreSQLDialect
+Projeyi Çalıştırma 🏃‍♂️
+Projeyi klonlayın.
 
-### Hedeflerimiz:
+application.properties dosyasındaki PostgreSQL bilgilerinizi güncelleyin.
 
-### Library Rest Api
+Terminale gidip şu komutla projeyi çalıştırın:
 
- ### Başlangıç
- * Spring Initializr kullanarak bir Spring Boot projesi oluşturun.
- * İçerisinde ```Spring Web``` dependency eklenmeli.
- * Maven dependency management sistemini kullanarak tüm dependencyleri install edin.
- * Uygulamanızı  ```8080``` portundan ayağa kaldırın.
- * Bir banka uygulaması için rest api dizayn etmeniz istenmektedir.
+bash
+Kodu kopyala
+mvn spring-boot:run
+API’leri Test Et! 📡
+Postman ile API'lerimizi test etmek çok kolay! İşte birkaç örnek endpoint:
 
-### Görev 1
-* Veri tabanı dizaynınız şu şekilde olmalı. Toplam 3 tablo yazmanız gerekmektedir.
-* ```category``` tablosu => (id, name) kolonlarından oluşmalı.
-* ```author``` tablosu => (id, first_name, last_name) bilgilerini içermeli.
-* ```book``` tablosu => (id, name) bilgilerini içermeli.
-* Bir kitabın sadece bir kategorisi olabilir. Ancak bir kategoride birçok kitap olabilir.
-* Bir kitabın bir yazarı olabilir. Aynı şekilde bir yazar birçok kitap yazabilir
+1. Yeni Yazar Oluştur ✍️
+Method: POST
+Endpoint: /author
+Body:
 
+json
+Kodu kopyala
+{
+  "firstName": "Okyanus",
+  "lastName": "Aydogan"
+}
+Postman'de POST methodunu seçip, http://localhost:8080/workintech/author endpoint'ine yukarıdaki body'yi ekleyip gönder. 🎯
 
- ### Görev 2
- *  ```controller```, ```service```, ```dao```, ```entity```,  isminde 4 adet daha paket oluşturunuz.
- * ```entity``` paketinin altına ```Category```, ```Author```, ```Book``` isimli üç tane sınıf oluşturunuz.
- * ```Category```, ```Author``` ve ```Book``` sınıfları project lombok annotationlarını kullanarak oluşturulmalılar.
- * ```Category``` ve ```Book``` sınıflarının birbirleri arasındaki ilişkiyi tanımlayan annotaionları kullanın.
- * ```Book``` ve ```Author``` sınıflarının birbirleri arasındaki ilişkiyi tanımlayan annotaionları kullanın.
+2. Tüm Yazarları Getir 📚
+Method: GET
+Endpoint: /author
+Postman’de sadece GET methodunu ve şu URL'yi kullanman yeterli: http://localhost:8080/workintech/author.
 
- ### Görev 3
- * ```AuthorController```, ```BookController```, ```CategoryController``` isimli 3 tane controller yazmalısınız.
- * Amacımız CRUD işlemlerini tanımlayan endpointler yazmak. 
- * [GET]/workintech/category => veri tabanaında kayıtlı tüm category bilgilerini döner.
- * [GET]/workintech/category/{id} => İlgili id deki category objesini döner.
- * [POST]/workintech/category => Bir adet category objesini veri tabanına ekler.
- * [PUT]/workintech/category/{id} => İlgili id deki category objesinin değerlerini günceller.
- * [DELETE]/workintech/category/{id} => İlgili id değerindeki category objesini siler.(Category silinirse, altındaki kitaplar silinmeli, mi ?)
+3. Yeni Kategori Oluştur 🏷️
+Method: POST
+Endpoint: /category
+Body:
 
- * [GET]/workintech/book => veri tabanında kayıtlı tüm book bilgilerini döner.
- * [GET]/workintech/book/{id} => İlgili id deki book objesini dönmeli.
- * [POST]/workintech/book/{categoryId} => İlgili categoryId ile verilen Category objesini bulup, book objesine iligli kategoriyi set edip, book objesini veritabanına kaydeder.
- * [POST]/saveByAuthor/{categoryId}/{authorId} => İlgili categoryId  ile verilen Category objesini bulup, ilgili authorId ile Author objesini bulup 2 objeyide booka ekleyip kaydetmelisiniz.
- * [PUT]/workintech/book/{id} => İlgili id deki book objesinin değerlerini günceller.
- * [DELETE]/workintech/book/{id} => İlgili id değerindeki book objesini siler.
+json
+Kodu kopyala
+{
+  "name": "Fiction"
+}
+Yine Postman’de POST methodunu ve http://localhost:8080/workintech/category endpoint'ini kullanarak yukarıdaki body'yi gönder. Kategorin hazır!
 
-* [GET]/workintech/author/ => veri tabanında kayıtlı tüm author bilgilerini döner.
-* [GET]/workintech/author/{id} => İlgili id deki author objesini dönmeli.
-* [POST]/workintech/author/ => Bir adet author objesini ver tabanına ekler
-* [POST]/workintech/author/{bookId} => Parametre olarak gelen id ile ilgili book objesini bulur author a ilgili book objesini set eder. Veri tabanına ekleme yapar. 
-* [PUT]/workintech/author/{authorId} =>Parametre olarak gelen id ile ilgili author objesini günceller
-* [DELETE]/workintech/author/{id} => İlgili id değerindeki author objesini siler.
+4. Kitap Kaydet ve Yazara/Kategoriye Bağla 📖
+Method: POST
+Endpoint: /book/saveByAuthor
+Parametreler:
+
+categoryId: Kategori ID'si
+authorId: Yazar ID'si
+Body:
+
+json
+Kodu kopyala
+{
+  "name": "Java Programming"
+}
+Postman’de:
+
+URL: http://localhost:8080/workintech/book/saveByAuthor?categoryId={categoryId}&authorId={authorId}
+Body'de kitabını kaydet!
+Postman Kullanımı 🧪
+Postman’de yeni istekler oluşturarak yukarıdaki API’leri test edebilirsin. API URL'lerini ekleyip, GET ya da POST gibi methodları seçerek ve gerekli body'yi ekleyerek hemen işe başlayabilirsin!
+
+Sonuç 🎯
+Bu proje, kitaplar ve yazarlar arasında basit bir CRUD yönetimi sunuyor. Spring Boot ve PostgreSQL ile çalışırken Postman kullanarak rahatça test edebilirsin. Hadi, biraz kod yazmanın ve eğlenmenin tam zamanı! 😎
 
