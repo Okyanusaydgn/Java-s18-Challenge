@@ -1,16 +1,127 @@
-"# 📚 Kitap Yazar Projesi Merhaba! 👋 Bu proje, yazarlar, kitaplar ve kategoriler arasında bir yönetim sistemi sunan basit bir **Spring Boot** uygulaması. **PostgreSQL** ile veritabanı işlemlerini hallediyoruz ve **Hibernate** ile ORM kullanıyoruz. Hadi birlikte bakalım nasıl çalışıyor! 🚀 ## İçindekiler - [Kurulum](#kurulum-🛠️) - [Projeyi Çalıştırma](#projeyi-çalıştırma-🏃‍♂️) - [API'leri Test Et!](#api'leri-test-et-📡) - [Sonuç](#sonuç-🎯) - [Lisans](#lisans) ## Kurulum 🛠️ ### Gereksinimler - **Java 17** ☕ - **Spring Boot 3.x** 🌱 - **PostgreSQL 15** 🐘 - **Postman** (API'leri test etmek için) 📬 ### Veritabanı Ayarları Projemiz, PostgreSQL'e bağlı ve ilgili ayarlar `application.properties` dosyasında. İşte önemli ayarlar:
+# 📚 Kitap Yazar Projesi
+
+Merhaba! Bu proje, Java Spring Boot ve PostgreSQL kullanarak geliştirdiğimiz bir **Kitap Yazar Yönetim Sistemi**. Burada yazar bilgilerini ekleyebilir, silebilir, güncelleyebilir ve listeleyebilirsin. Backend projesi tamamen Java ile yazıldı ve veritabanı olarak PostgreSQL kullandık.
+
+## 📌 Projenin Özeti
+Bu proje, yazarlar ve onların kitapları arasında yönetim sağlayan bir sistemdir. Kullanıcılar, yazar ekleme, silme, güncelleme ve listeleme işlemlerini gerçekleştirebilir. Ayrıca, kitap ekleme ve silme işlemleri de yapılabilmektedir. Projenin amacı, kullanıcıların kitap ve yazar bilgilerini kolayca yönetmelerine olanak tanımaktır.
+
+## Neler Kullandık?
+- **Java 17**: Ana dilimiz.
+- **Spring Boot**: Backend kısmını hızlıca halletmek için.
+- **PostgreSQL**: Veritabanı olarak seçtik, çünkü sağlam ve stabil.
+- **pgAdmin**: PostgreSQL veritabanını yönetmek için kullandık.
+- **Postman**: API’yi test etmek için, ayrıca sen de denemeler yapabilmen için Postman linkini aşağıda paylaşıyorum.
+- **IntelliJ IDEA**: Kodları yazarken burayı tercih ettik.
+
+## Nasıl Çalıştırırsın?
+Öncelikle Docker kurmakla uğraşmana gerek yok. Direkt olarak PostgreSQL'i kendi sisteminde kurman yeterli. Şu adımları izleyerek projeyi hızlıca ayağa kaldırabilirsin:
+
+1. PostgreSQL indir ve kur. Eğer PostgreSQL yüklü değilse, [buradan indir](https://www.postgresql.org/download/).
+2. PostgreSQL kurduktan sonra, pgAdmin'i aç ve yeni bir veritabanı oluştur: **bookAuthorManagement**.
+3. Şimdi projeyi klonla:
+
+   ```
+   [git clone https://github.com/kullanici_adi/book-author-project.git](https://github.com/Okyanusaydgn/Java-s18-Challenge.git)
+   ```
+
+ 4. `application.properties dosyasını aç`, aşağıdaki veritabanı ayarlarını kendi bilgilerinle doldur:
+
+    ```
+    spring.datasource.url=jdbc:postgresql://localhost:5432/bookAuthorManagement
+    spring.datasource.username=postgres
+    spring.datasource.password=senin_sifren
+    spring.jpa.hibernate.ddl-auto=update
+    ```
+ 5.  IntelliJ IDEA'da projeyi aç ve çalıştır. İşte bu kadar! Artık backend çalışıyor olacak.
+    
+## 📡 API Endpoint'leri
+Aşağıda birkaç endpoint paylaşıyorum. Bu endpoint'ler üzerinden yazarları ve kitapları yönetebilirsin. Örneğin yazar ekleyebilir, mevcut yazarların bilgilerini güncelleyebilir, listeleyebilir veya silebilirsin.
+
+| HTTP Metodu | URL                                | Ne Yapar                               |
+|-------------|------------------------------------|----------------------------------------|
+| GET         | /workintech/author                 | Tüm yazarları listeler                 |
+| POST        | /workintech/author                 | Yeni yazar ekler                       |
+| PUT         | /workintech/author/{id}            | Yazar bilgisini günceller              |
+| DELETE      | /workintech/author/{id}            | Yazarı siler                           |
+| GET         | /workintech/book                   | Tüm kitapları listeler                 |
+| POST        | /workintech/book/saveByAuthor      | Yeni bir kitap ekler                   |
+| DELETE      | /workintech/book/{id}              | Kitabı siler                           |
+
+
+## 📄 Örnek İstekler:
+### GET /workintech/author
+Bu istek, veritabanındaki tüm yazarları listeleyecektir. Postman ile basit bir GET isteği yapabilirsin.
+### POST /workintech/author
+Yeni bir yazar eklemek için bu endpoint'i kullanabilirsin. Gövde (Body) kısmına aşağıdaki JSON verisini 
+ekleyerek yeni bir yazar ekleyebilirsin:
+```
+{
+    "firstName": "Okyanus",
+    "lastName": "Aydogan"
+}
 
 ```
-properties
-spring.application.name=Book-Author-Project
-server.servlet.context-path=/workintech
-server.port=8080
-spring.datasource.url=jdbc:postgresql://localhost:5432/projects
-spring.datasource.username=postgres
-spring.datasource.password=your_password_here
-spring.jpa.hibernate.ddl-auto=update
-spring.jpa.properties.hibernate.default_schema=fsweb
-spring.jpa.database-platform=org.hibernate.dialect.PostgreSQLDialect
+### PUT /workintech/author/{id}
+Mevcut bir yazarın bilgilerini güncellemek için bu endpoint'i kullanabilirsin. Örneğin, id değeri 1 olan bir yazarın bilgilerini güncellemek istiyorsan, şu formatta bir PUT isteği yapmalısın:
+
 ```
 
-### Projeyi Çalıştırma 🏃‍♂️ Projeyi klonlayın: bash Kodu kopyala git clone https://github.com/kullanici_adiniz/kitap-yazar-projesi.git application.properties dosyasındaki PostgreSQL bilgilerinizi güncelleyin. Terminale gidip şu komutla projeyi çalıştırın: bash Kodu kopyala mvn spring-boot:run API'leri Test Et! 📡 Postman ile API'lerimizi test etmek çok kolay! İşte birkaç örnek endpoint: 1. Yeni Yazar Oluştur ✍️ Method: POST Endpoint: /author Body: json Kodu kopyala { "firstName": "Okyanus", "lastName": "Aydogan" } Postman'de POST methodunu seçip, http://localhost:8080/workintech/author endpoint'ine yukarıdaki body'yi ekleyip gönder. 🎯 2. Tüm Yazarları Getir 📚 Method: GET Endpoint: /author Postman'de sadece GET methodunu ve şu URL'yi kullanman yeterli: http://localhost:8080/workintech/author. 3. Yeni Kategori Oluştur 🏷️ Method: POST Endpoint: /category Body: json Kodu kopyala { "name": "Fiction" } Yine Postman'de POST methodunu ve http://localhost:8080/workintech/category endpoint'ini kullanarak yukarıdaki body'yi gönder. Kategorin hazır! 4. Kitap Kaydet ve Yazara/Kategoriye Bağla 📖 Method: POST Endpoint: /book/saveByAuthor Parametreler: categoryId: Kategori ID'si authorId: Yazar ID'si Body: json Kodu kopyala { "name": "Java Programming" } Postman'de: URL: http://localhost:8080/workintech/book/saveByAuthor?categoryId={categoryId}&authorId={authorId} Body'de kitabını kaydet! ### Sonuç 🎯 Bu proje, kitaplar ve yazarlar arasında basit bir CRUD yönetimi sunuyor. Spring Boot ve PostgreSQL ile çalışırken Postman kullanarak rahatça test edebilirsin. Hadi, biraz kod yazmanın ve eğlenmenin tam zamanı! 😎
+{
+    "firstName": "Ali",
+    "lastName": "Yılmaz"
+}
+
+```
+### DELETE /workintech/author/{id}
+Bir yazarı silmek için kullanabilirsin. Örneğin, id değeri 2 olan bir yazarı silmek için şu şekilde bir DELETE isteği gönderebilirsin:
+```
+
+DELETE /workintech/author/2
+
+```
+## 📖  Endpointler
+
+### GET /workintech/book
+Açıklama: Tüm kitapların listesini getirir.
+Örnek Yanıt:
+```
+[
+  {
+    "id": 1,
+    "name": "Okyanus",
+    "authorId": 1,
+    "categoryId": 1
+  },
+  {
+    "id": 2,
+    "name": "Fatma",
+    "authorId": 2,
+    "categoryId": 2
+  }
+]
+```
+### POST /workintech/book/saveByAuthor
+Açıklama: Yeni bir kitap ekler.
+Örnek İstek Gövdesi:
+```
+{
+  "name": "Design Patterns",
+  "authorId": 1,
+  "categoryId": 1
+}
+```
+
+### DELETE /workintech/book/{id}
+Açıklama: Belirtilen ID'ye sahip kitabı siler.
+
+```
+DELETE /workintech/book/2
+```
+
+## 🤝 Katkıda Bulunma
+Bu projeye katkıda bulunmak istersen, lütfen önce bir sorun açarak veya benimle iletişime geçerek fikirlerini paylaş! Her türlü katkı için açığım. Ayrıca, pull request’ler de memnuniyetle karşılanır.
+
+## 📧 İletişim
+Soruların veya önerilerin için benimle iletişime geçebilirsin:
+- E-posta: okyanusaydgn@gmail.com
+- GitHub: [Okyanusaydgn](https://github.com/Okyanusaydgn)
