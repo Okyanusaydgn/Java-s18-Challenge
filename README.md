@@ -1,90 +1,69 @@
-📚 Kitap Yazar Projesi
-Merhaba! 👋 Bu proje, yazarlar, kitaplar ve kategoriler arasında bir yönetim sistemi sunan basit bir Spring Boot uygulaması. PostgreSQL ile veritabanı işlemlerini hallediyoruz ve Hibernate ile ORM kullanıyoruz. Hadi birlikte bakalım nasıl çalışıyor! 🚀
-
-Kurulum 🛠️
-Gereksinimler:
-Java 17 ☕
-Spring Boot 3.x 🌱
-PostgreSQL 15 🐘
-Postman (API’leri test etmek için) 📬
-Veritabanı Ayarları:
-Projemiz, PostgreSQL’e bağlı ve ilgili ayarlar application.properties dosyasında. İşte önemli ayarlar:
-
-properties
-Kodu kopyala
-spring.application.name=Book-Author-Project
-server.servlet.context-path=/workintech
-server.port=8080
-spring.datasource.url=jdbc:postgresql://localhost:5432/projects
-spring.datasource.username=postgres
-spring.datasource.password=137731
-spring.jpa.hibernate.ddl-auto=update
-spring.jpa.properties.hibernate.default_schema=fsweb
-spring.jpa.database-platform=org.hibernate.dialect.PostgreSQLDialect
-Projeyi Çalıştırma 🏃‍♂️
-Projeyi klonlayın.
-
-application.properties dosyasındaki PostgreSQL bilgilerinizi güncelleyin.
-
-Terminale gidip şu komutla projeyi çalıştırın:
-
-bash
-Kodu kopyala
-mvn spring-boot:run
-API’leri Test Et! 📡
+## API’leri Test Et! 📡
 Postman ile API'lerimizi test etmek çok kolay! İşte birkaç örnek endpoint:
 
-1. Yeni Yazar Oluştur ✍️
-Method: POST
-Endpoint: /author
-Body:
+### 1. Yeni Yazar Oluştur ✍️
+- **Method:** POST
+- **Endpoint:** /author
 
-json
-Kodu kopyala
+**Body:**
+
+```json
 {
   "firstName": "Okyanus",
   "lastName": "Aydogan"
 }
-Postman'de POST methodunu seçip, http://localhost:8080/workintech/author endpoint'ine yukarıdaki body'yi ekleyip gönder. 🎯
+## API’leri Test Et! 📡
+Postman ile API'lerimizi test etmek çok kolay! İşte birkaç örnek endpoint:
 
-2. Tüm Yazarları Getir 📚
-Method: GET
-Endpoint: /author
-Postman’de sadece GET methodunu ve şu URL'yi kullanman yeterli: http://localhost:8080/workintech/author.
+### 1. Yeni Yazar Oluştur ✍️
+- **Method:** POST
+- **Endpoint:** /author
 
-3. Yeni Kategori Oluştur 🏷️
-Method: POST
-Endpoint: /category
-Body:
+Postman'de POST methodunu seçip, `http://localhost:8080/workintech/author` endpoint'ine aşağıdaki body'yi ekleyip gönder. 🎯
 
-json
-Kodu kopyala
+```json
+{
+  "firstName": "Okyanus",
+  "lastName": "Aydogan"
+}
+### 2. Tüm Yazarları Getir 📚
+- **Method:** GET
+- **Endpoint:** /author
+
+Postman’de sadece GET methodunu ve şu URL'yi kullanman yeterli: `http://localhost:8080/workintech/author`.
+
+### 3. Yeni Kategori Oluştur 🏷️
+- **Method:** POST
+- **Endpoint:** /category
+
+**Body:**
+
+```json
 {
   "name": "Fiction"
 }
-Yine Postman’de POST methodunu ve http://localhost:8080/workintech/category endpoint'ini kullanarak yukarıdaki body'yi gönder. Kategorin hazır!
+Yine Postman’de POST methodunu ve `http://localhost:8080/workintech/category` endpoint'ini kullanarak yukarıdaki body'yi gönder. Kategorin hazır!
 
-4. Kitap Kaydet ve Yazara/Kategoriye Bağla 📖
-Method: POST
-Endpoint: /book/saveByAuthor
-Parametreler:
+### 4. Kitap Kaydet ve Yazara/Kategoriye Bağla 📖
+- **Method:** POST
+- **Endpoint:** /book/saveByAuthor
 
-categoryId: Kategori ID'si
-authorId: Yazar ID'si
-Body:
+**Parametreler:**
+- `categoryId`: Kategori ID'si
+- `authorId`: Yazar ID'si
 
-json
-Kodu kopyala
+**Body:**
+
+```json
 {
   "name": "Java Programming"
 }
 Postman’de:
+- **URL:** `http://localhost:8080/workintech/book/saveByAuthor?categoryId={categoryId}&authorId={authorId}`
+- Body'de kitabını kaydet!
 
-URL: http://localhost:8080/workintech/book/saveByAuthor?categoryId={categoryId}&authorId={authorId}
-Body'de kitabını kaydet!
-Postman Kullanımı 🧪
+### Postman Kullanımı 🧪
 Postman’de yeni istekler oluşturarak yukarıdaki API’leri test edebilirsin. API URL'lerini ekleyip, GET ya da POST gibi methodları seçerek ve gerekli body'yi ekleyerek hemen işe başlayabilirsin!
 
-Sonuç 🎯
+### Sonuç 🎯
 Bu proje, kitaplar ve yazarlar arasında basit bir CRUD yönetimi sunuyor. Spring Boot ve PostgreSQL ile çalışırken Postman kullanarak rahatça test edebilirsin. Hadi, biraz kod yazmanın ve eğlenmenin tam zamanı! 😎
-
