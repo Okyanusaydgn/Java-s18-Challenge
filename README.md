@@ -13,7 +13,7 @@ Merhaba! 👋 Bu proje, yazarlar, kitaplar ve kategoriler arasında bir yönetim
 ### Veritabanı Ayarları:
 Projemiz, PostgreSQL’e bağlı ve ilgili ayarlar `application.properties` dosyasında. İşte önemli ayarlar:
 
-```properties
+properties
 spring.application.name=Book-Author-Project
 server.servlet.context-path=/workintech
 server.port=8080
