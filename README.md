@@ -1,17 +1,19 @@
-📚 Kitap Yazar Projesi
+# 📚 Kitap Yazar Projesi
+
 Merhaba! 👋 Bu proje, yazarlar, kitaplar ve kategoriler arasında bir yönetim sistemi sunan basit bir Spring Boot uygulaması. PostgreSQL ile veritabanı işlemlerini hallediyoruz ve Hibernate ile ORM kullanıyoruz. Hadi birlikte bakalım nasıl çalışıyor! 🚀
 
-Kurulum 🛠️
-Gereksinimler:
-Java 17 ☕
-Spring Boot 3.x 🌱
-PostgreSQL 15 🐘
-Postman (API’leri test etmek için) 📬
-Veritabanı Ayarları:
-Projemiz, PostgreSQL’e bağlı ve ilgili ayarlar application.properties dosyasında. İşte önemli ayarlar:
+## Kurulum 🛠️
 
-properties
-Kodu kopyala
+### Gereksinimler:
+- Java 17 ☕
+- Spring Boot 3.x 🌱
+- PostgreSQL 15 🐘
+- Postman (API’leri test etmek için) 📬
+
+### Veritabanı Ayarları:
+Projemiz, PostgreSQL’e bağlı ve ilgili ayarlar `application.properties` dosyasında. İşte önemli ayarlar:
+
+```properties
 spring.application.name=Book-Author-Project
 server.servlet.context-path=/workintech
 server.port=8080
@@ -21,13 +23,11 @@ spring.datasource.password=137731
 spring.jpa.hibernate.ddl-auto=update
 spring.jpa.properties.hibernate.default_schema=fsweb
 spring.jpa.database-platform=org.hibernate.dialect.PostgreSQLDialect
-Projeyi Çalıştırma 🏃‍♂️
+
+## Projeyi Çalıştırma 🏃‍♂️
 Projeyi klonlayın.
-
 application.properties dosyasındaki PostgreSQL bilgilerinizi güncelleyin.
-
 Terminale gidip şu komutla projeyi çalıştırın:
-
 bash
 Kodu kopyala
 mvn spring-boot:run
@@ -38,7 +38,6 @@ Postman ile API'lerimizi test etmek çok kolay! İşte birkaç örnek endpoint:
 Method: POST
 Endpoint: /author
 Body:
-
 json
 Kodu kopyala
 {
@@ -56,7 +55,6 @@ Postman’de sadece GET methodunu ve şu URL'yi kullanman yeterli: http://localh
 Method: POST
 Endpoint: /category
 Body:
-
 json
 Kodu kopyala
 {
@@ -68,11 +66,9 @@ Yine Postman’de POST methodunu ve http://localhost:8080/workintech/category en
 Method: POST
 Endpoint: /book/saveByAuthor
 Parametreler:
-
 categoryId: Kategori ID'si
 authorId: Yazar ID'si
 Body:
-
 json
 Kodu kopyala
 {
@@ -87,4 +83,3 @@ Postman’de yeni istekler oluşturarak yukarıdaki API’leri test edebilirsin.
 
 Sonuç 🎯
 Bu proje, kitaplar ve yazarlar arasında basit bir CRUD yönetimi sunuyor. Spring Boot ve PostgreSQL ile çalışırken Postman kullanarak rahatça test edebilirsin. Hadi, biraz kod yazmanın ve eğlenmenin tam zamanı! 😎
-
