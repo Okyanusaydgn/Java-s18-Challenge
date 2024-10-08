@@ -30,11 +30,12 @@ spring.datasource.password=your_password_here
 spring.jpa.hibernate.ddl-auto=update
 spring.jpa.properties.hibernate.default_schema=fsweb
 spring.jpa.database-platform=org.hibernate.dialect.PostgreSQLDialect
-Projeyi Çalıştırma 🏃‍♂️
-Projeyi klonlayın:
 ```
 
 
+
+Projeyi Çalıştırma 🏃‍♂️
+Projeyi klonlayın:
 git clone https://github.com/kullanici_adiniz/kitap-yazar-projesi.git
 application.properties dosyasındaki PostgreSQL bilgilerinizi güncelleyin.
 
