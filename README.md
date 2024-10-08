@@ -32,9 +32,9 @@ spring.jpa.properties.hibernate.default_schema=fsweb
 spring.jpa.database-platform=org.hibernate.dialect.PostgreSQLDialect
 Projeyi Çalıştırma 🏃‍♂️
 Projeyi klonlayın:
+```
 
-bash
-Kodu kopyala
+
 git clone https://github.com/kullanici_adiniz/kitap-yazar-projesi.git
 application.properties dosyasındaki PostgreSQL bilgilerinizi güncelleyin.
 
